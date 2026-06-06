@@ -1,32 +1,33 @@
 {
   "name": "pluralchum",
-  "version": "2.10.5",
-  "repository": "https://github.com/estroBiologist/pluralchum.git",
-  "contributors": [
-    "Ash Taylor",
-    "Aria Givens"
-  ],
-  "license": "MIT",
-  "type": "module",
+  "version": "1.0.0",
+  "private": true,
   "scripts": {
-    "build": "rollup -c",
-    "format": "prettier './**/*.js' --write",
-    "lint": "eslint './**/*.js'"
+    "build": "node build.mjs",
+    "dev": "node build.mjs --watch",
+    "clean": "node build.mjs --clean",
+    "repo": "node repo.mjs",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
+    "lint:report": "eslint --output-file eslint_report.json --format json src",
+    "typecheck": "tsc --noEmit",
+    "check": "pnpm run lint && pnpm run typecheck"
   },
   "devDependencies": {
-    "@eslint-react/eslint-plugin": "^5.7.1",
-    "@eslint/js": "^10.0.1",
-    "@rollup/plugin-image": "^3.0.3",
-    "@rollup/plugin-node-resolve": "^16.0.3",
-    "@rollup/plugin-replace": "^6.0.3",
-    "@svgr/rollup": "^8.1.0",
-    "eslint": "^10.3.0",
+    "@electron/asar": "^3.2.8",
+    "@moonlight-mod/esbuild-config": "^1.0.0",
+    "@moonlight-mod/eslint-config": "github:moonlight-mod/eslint-config",
+    "esbuild": "^0.19.3",
+    "eslint": "^9.12.0",
     "globals": "^17.6.0",
-    "prettier": "3.8.3",
-    "rollup": "^4.60.2",
-    "rollup-plugin-import-css": "4.2.1"
+    "prettier": "^3.1.0",
+    "typescript": "^5.3.2",
+    "@eslint/js": "^9.39.4",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-prettier": "^5.5.6",
+    "typescript-eslint": "^8.60.1"
   },
   "dependencies": {
-    "@ariagivens/discord-unicode-fix-js": "^1.1.1"
+    "@moonlight-mod/types": "^2026.5.2"
   }
 }
