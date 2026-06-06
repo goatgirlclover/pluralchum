@@ -9,5 +9,51 @@
     "description": "A longer description that can **use Markdown**",
     "authors": ["You!"],
     "source": "https://example.com/"
+  },
+  "settings": {
+    "doColourText": {
+      "displayName": "Colored proxy text",
+      "type": "boolean",
+      "default": true
+    },
+    "useServerNames": {
+      "displayName": "Use servernames",
+      "type": "boolean",
+      "default": true
+    },
+    "memberColourPref": {
+      "displayName": "Default member name color",
+      "type": "select",
+      "options": ["Member", "System", "Role", "Theme"],
+      "default": "Member"
+    },
+    "tagColourPref": {
+      "displayName": "Default system tag color",
+      "type": "select",
+      "options": ["Member", "System", "Role", "Theme"],
+      "default": "System"
+    },
+    "doDisableBanners": {
+      "displayName": "Disable banners",
+      "type": "boolean",
+      "default": false
+    },
+    "doContrastTest": {
+      "displayName": "Enable text contrast test",
+      "type": "boolean",
+      "default": true
+    },
+    "contrastTestColour": {
+      "displayName": "Contrast test color",
+      "type": "string",
+      "default": "#000000"
+    },
+    "contrastThreshold": {
+      "displayName": "Contrast ratio threshold",
+      "type": "number",
+      "min": 1,
+      "max": 21,
+      "default": 3
+    }
   }
 }

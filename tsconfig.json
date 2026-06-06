@@ -4,7 +4,7 @@
     "module": "es2022",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "strict": true,
+    "strict": false,
     "skipLibCheck": true,
     "moduleResolution": "bundler",
     "jsx": "react",

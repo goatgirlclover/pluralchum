@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@ariagivens/discord-unicode-fix-js':
+        specifier: ^1.1.1
+        version: 1.1.1
       '@moonlight-mod/types':
         specifier: ^2026.5.2
         version: 2026.5.2(react@19.2.7)(typescript@5.9.3)
@@ -50,6 +53,9 @@ importers:
         version: 8.60.1(eslint@9.39.4)(typescript@5.9.3)
 
 packages:
+
+  '@ariagivens/discord-unicode-fix-js@1.1.1':
+    resolution: {integrity: sha512-KYGAZO4v7sDJ5KWYZOb7gwMxcD5Umqmvb5ZFltpotVuQ6zTjw9ETiTTS7CVSEA8fUjNk5fkS9B8NqVP40POyOg==}
 
   '@discord/intl-ast@0.29.1':
     resolution: {integrity: sha512-ufQrRIiz2ZjHVqyK+zlcUgtxvP/X2g9S59cph4Inl+KnNxqmqVrXUiTGXAqn0hREMr2VxKJJzBVdMEU4brG4KQ==}
@@ -1371,6 +1377,8 @@ packages:
         optional: true
 
 snapshots:
+
+  '@ariagivens/discord-unicode-fix-js@1.1.1': {}
 
   '@discord/intl-ast@0.29.1': {}
 
