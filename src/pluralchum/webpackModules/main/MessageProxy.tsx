@@ -1,6 +1,6 @@
-import { hookupProfile } from '@moonlight-mod/wp/pluralchum_profiles';
-import { useValueCell } from '@moonlight-mod/wp/pluralchum_utility';
-import Pluralchum from '@moonlight-mod/wp/pluralchum_main';
+import { hookupProfile } from './profiles';
+import { isProxiedMessage, useValueCell } from './utility';
+import Pluralchum from './singleton';
 import React from '@moonlight-mod/wp/react';
 //import { HiddenMessage, Reason } from './HiddenMessage';
 //const RelationshipStore = BdApi.Webpack.Stores.RelationshipStore;
@@ -39,11 +39,14 @@ function MessageProxyInner({ messageNode, message }) {
   }*/
 }
 
-export default function MessageProxy({ messageNode, message }) {
+export default function MessageProxy(orig, props) {
+  const messageNode = orig(props);
+  const message = props?.childrenMessageContent?.props?.children?.props?.message;
+
   logger.debug(`handling message ${message?.id}`);
   const [enabled] = useValueCell(Pluralchum.enabled);
 
-  if (enabled && message) {
+  if (enabled && message && isProxiedMessage(message)) {
     logger.debug('wrapping');
     return <MessageProxyInner messageNode={messageNode} message={message} />;
   } else {

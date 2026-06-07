@@ -1,7 +1,7 @@
 import { fix } from '@ariagivens/discord-unicode-fix-js';
-import { acceptableContrast } from '@moonlight-mod/wp/pluralchum_contrast';
-import { ColourPreference } from '@moonlight-mod/wp/pluralchum_data';
-import HeaderPKBadge from '@moonlight-mod/wp/pluralchum_HeaderPKBadge';
+import { acceptableContrast } from './contrast';
+import { ColourPreference } from './data';
+import HeaderPKBadge from './HeaderPKBadge';
 import React from '@moonlight-mod/wp/react';
 import { GuildMemberStore } from '@moonlight-mod/wp/common_stores';
 

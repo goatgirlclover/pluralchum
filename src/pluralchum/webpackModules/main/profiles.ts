@@ -1,5 +1,5 @@
-import { sleep, isProxiedMessage } from '@moonlight-mod/wp/pluralchum_utility';
-import Pluralchum from '@moonlight-mod/wp/pluralchum_main';
+import { sleep, isProxiedMessage } from './utility';
+import Pluralchum from './singleton';
 import React from '@moonlight-mod/wp/react';
 
 export const ProfileStatus = {

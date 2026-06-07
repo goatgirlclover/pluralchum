@@ -1,5 +1,5 @@
-import { initializeProfileMap } from '@moonlight-mod/wp/pluralchum_data';
-import { MapCell, ValueCell } from '@moonlight-mod/wp/pluralchum_utility';
+import { initializeProfileMap } from './data';
+import { MapCell, ValueCell } from './utility';
 
 const logger = moonlight.getLogger('pluralchum/main');
 

@@ -1,4 +1,4 @@
-import HeaderPKBadge from '@moonlight-mod/wp/pluralchum_HeaderPKBadge';
+import HeaderPKBadge from './HeaderPKBadge';
 import React from '@moonlight-mod/wp/react';
 
 export default function LoadingMessageHeader({ messageHeader, profile, userHash }) {

@@ -1,6 +1,6 @@
-import { ThreeDots } from '@moonlight-mod/wp/pluralchum_ThreeDots';
-import { ProfileStatus } from '@moonlight-mod/wp/pluralchum_profiles';
-import Pluralchum from '@moonlight-mod/wp/pluralchum_main';
+import { ThreeDots } from './ThreeDots';
+import { ProfileStatus } from './profiles';
+import Pluralchum from './singleton';
 import React from '@moonlight-mod/wp/react';
 
 export default function PopoutPKBadge({ userHash, profile }) {

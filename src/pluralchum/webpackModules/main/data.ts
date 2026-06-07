@@ -1,5 +1,5 @@
-import { MapCell, pluginName } from '@moonlight-mod/wp/pluralchum_utility';
-import { ProfileStatus } from '@moonlight-mod/wp/pluralchum_profiles';
+import { MapCell, pluginName } from './utility';
+import { ProfileStatus } from './profiles';
 
 export const ColourPreference = {
   Member: 'Member',

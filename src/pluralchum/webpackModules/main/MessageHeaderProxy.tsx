@@ -1,13 +1,18 @@
-import { useValueCell, isProxiedMessage } from '@moonlight-mod/wp/pluralchum_utility';
-import { hookupProfile, updateProfile, ProfileStatus, getUserHash } from '@moonlight-mod/wp/pluralchum_profiles';
-import Pluralchum from '@moonlight-mod/wp/pluralchum_main';
+import { useValueCell, isProxiedMessage } from './utility';
+import { hookupProfile, updateProfile, ProfileStatus, getUserHash } from './profiles';
+import Pluralchum from './singleton';
 import React from '@moonlight-mod/wp/react';
-import ColoredMessageHeader from './ColorMessageHeader.js';
-import LoadingMessageHeader from '@moonlight-mod/wp/pluralchum_LoadingMessageHeader';
+import ColoredMessageHeader from './ColorMessageHeader';
+import LoadingMessageHeader from './LoadingMessageHeader';
 
 const logger = moonlight.getLogger('pluralchum/MessageHeaderProxy');
 
-export default function MessageHeaderProxy({ messageHeader, message, guildId, onClickUsername }) {
+export default function MessageHeaderProxy(orig, props) {
+  const messageHeader = orig(props);
+  const message = props?.message;
+  const guildId = props?.channel?.guild_id;
+  const onClickUsername = props?.onClick;
+
   const [profile] = hookupProfile(message);
   const [enabled] = useValueCell(Pluralchum.enabled);
 
