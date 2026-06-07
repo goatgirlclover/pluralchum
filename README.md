@@ -6,6 +6,7 @@ Missing features:
 
 * Privacy policy warning
 * Profile popouts
+* Blocking
 
 ---
 
