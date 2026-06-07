@@ -33,5 +33,6 @@ function hexToRgb(hex) {
 
 export function acceptableContrast(colour, doContrastTest, contrastTestColour, contrastThreshold) {
   const textContrast = contrast(hexToRgb(colour), hexToRgb(contrastTestColour));
+  window.console.log(textContrast);
   return !doContrastTest || textContrast >= contrastThreshold;
 }

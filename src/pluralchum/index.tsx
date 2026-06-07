@@ -18,6 +18,14 @@ export const patches: ExtensionWebExports['patches'] = [
         `${orig}let ${ident} = require('pluralchum_main').MessageHeaderProxy.bind(this, orig); function orig`,
     },
   },
+  {
+    find: /isCommandType\(\)[^;]*editedTimestamp\?\./,
+    replace: {
+      match: /({\i:\(\)=>(\i).*)\2=(\i\.memo)\(/g,
+      replacement: (_orig, orig, ident, memo) =>
+        `${orig}${ident} = require('pluralchum_main').MessageContentProxy(${memo}, `,
+    },
+  },
 ];
 
 // https://moonlight-mod.github.io/ext-dev/webpack/#webpack-module-insertion
