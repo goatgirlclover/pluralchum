@@ -1,14 +1,17 @@
 {
   "$schema": "https://moonlight-mod.github.io/manifest.schema.json",
   "id": "pluralchum",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "apiLevel": 2,
   "meta": {
-    "name": "pluralchum",
-    "tagline": "A short tagline that appears below the name",
-    "description": "A longer description that can **use Markdown**",
-    "authors": ["You!"],
-    "source": "https://example.com/"
+    "name": "Pluralchum",
+    "tagline": "PluralKit integration for Moonlight",
+    "authors": [
+      "Ash Taylor",
+      "Aria Givens",
+      "leo vriska"
+    ],
+    "source": "https://github.com/leo60228/pluralchum/tree/moonlight"
   },
   "settings": {
     "doColourText": {
@@ -24,13 +27,23 @@
     "memberColourPref": {
       "displayName": "Default member name color",
       "type": "select",
-      "options": ["Member", "System", "Role", "Theme"],
+      "options": [
+        "Member",
+        "System",
+        "Role",
+        "Theme"
+      ],
       "default": "Member"
     },
     "tagColourPref": {
       "displayName": "Default system tag color",
       "type": "select",
-      "options": ["Member", "System", "Role", "Theme"],
+      "options": [
+        "Member",
+        "System",
+        "Role",
+        "Theme"
+      ],
       "default": "System"
     },
     "doDisableBanners": {
