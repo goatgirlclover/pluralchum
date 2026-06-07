@@ -1,24 +1,28 @@
-import fs from "node:fs";
-import path from "node:path";
-import { watchExt, buildExt } from "@moonlight-mod/esbuild-config";
+import fs from 'node:fs';
+import path from 'node:path';
+import { watchExt, buildExt } from '@moonlight-mod/esbuild-config';
+import svgr from 'esbuild-plugin-svgr';
 
 const esm = [];
 
-const watch = process.argv.includes("--watch");
-const clean = process.argv.includes("--clean");
+const watch = process.argv.includes('--watch');
+const clean = process.argv.includes('--clean');
 
 if (clean) {
-  fs.rmSync("./dist", { recursive: true, force: true });
+  fs.rmSync('./dist', { recursive: true, force: true });
 } else {
-  const exts = fs.readdirSync("./src");
+  const exts = fs.readdirSync('./src');
 
   for (const ext of exts) {
     /** @type {import("@moonlight-mod/esbuild-config").ESBuildFactoryOptions} */
     const cfg = {
       ext,
-      entry: path.resolve(path.join("src", ext)),
-      output: path.resolve(path.join("dist", ext)),
-      esm: esm.includes(ext)
+      entry: path.resolve(path.join('src', ext)),
+      output: path.resolve(path.join('dist', ext)),
+      esm: esm.includes(ext),
+      extraPlugins: [
+        svgr({ icon: true, jsxRuntimeImport: { source: '@moonlight-mod/wp/react', defaultSpecifier: 'React' } }),
+      ],
     };
 
     if (watch) {

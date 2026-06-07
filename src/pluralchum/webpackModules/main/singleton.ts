@@ -1,5 +1,6 @@
 import { initializeProfileMap } from './data';
 import { MapCell, ValueCell } from './utility';
+import { patchEditMenuItem } from './edit';
 
 const logger = moonlight.getLogger('pluralchum/main');
 
@@ -13,6 +14,8 @@ class Pluralchum {
     logger.info('Loaded PK data');
 
     this.enabled = new ValueCell(true);
+
+    patchEditMenuItem();
   }
 }
 
