@@ -114,7 +114,7 @@ function shouldUpdate(profile) {
 
 export async function updateProfile(message) {
   if (!isProxiedMessage(message)) return null;
-  logger.debug(`updating profile for ${message.id}`);
+  logger.trace(`updating profile for ${message.id}`);
 
   let username = message.author.username;
   if (Object.hasOwn(message.author, 'username_real')) username = message.author.username_real;
@@ -134,10 +134,10 @@ export async function updateProfile(message) {
 }
 
 export function hookupProfile(message) {
-  logger.debug(`hooking up profile for ${message?.id}`);
+  logger.trace(`hooking up profile for ${message?.id}`);
 
   const userHash = getUserHash(message);
-  logger.debug(`user hash: ${userHash}`);
+  logger.trace(`user hash: ${userHash}`);
 
   const [profile, setProfile] = React.useState(Pluralchum.profileMap.get(userHash));
   React.useEffect(function () {

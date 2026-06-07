@@ -18,7 +18,7 @@ const logger = moonlight.getLogger('pluralchum/MessageProxy');
 }*/
 
 function MessageProxyInner({ messageNode, message }) {
-  logger.debug(`wrapper for ${message.id}`);
+  logger.trace(`wrapper for ${message.id}`);
   hookupProfile(message);
   return messageNode;
   /*const [profile] = hookupProfile(profileMap, message);
@@ -43,15 +43,15 @@ export default function MessageProxy(orig, props) {
   const messageNode = orig(props);
   const message = props?.childrenMessageContent?.props?.children?.props?.message;
 
-  logger.debug(`handling message ${message?.id}`);
+  logger.trace(`handling message ${message?.id}`);
   const [enabled] = useValueCell(Pluralchum.enabled);
 
   if (enabled && message && isProxiedMessage(message)) {
-    logger.debug('wrapping');
+    logger.trace('wrapping');
     return <MessageProxyInner messageNode={messageNode} message={message} />;
   } else {
-    if (!enabled) logger.debug('disabled');
-    if (!message) logger.debug('no message');
+    if (!enabled) logger.trace('disabled');
+    if (!message) logger.trace('no message');
     return messageNode;
   }
 }

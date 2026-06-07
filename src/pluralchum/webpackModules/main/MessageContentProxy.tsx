@@ -13,7 +13,7 @@ function shouldColor(profile) {
   const contrastThreshold = moonlight.getConfigOption('pluralchum', 'contrastThreshold');
   const doColourText = moonlight.getConfigOption('pluralchum', 'doColourText');
 
-  logger.debug(doColourText, profile, profile.color, doContrastTest, contrastTestColour, contrastThreshold);
+  logger.trace(doColourText, profile, profile.color, doContrastTest, contrastTestColour, contrastThreshold);
 
   return (
     doColourText &&
@@ -27,28 +27,28 @@ function shouldColor(profile) {
 export default function MessageContentProxy(memo, orig) {
   return memo(props => {
     const messageContent = orig(props);
-    logger.debug(props);
+    logger.trace(props);
     const message = props?.message;
 
     if (!message) return messageContent;
 
-    logger.debug(`handling message ${message.id}`);
+    logger.trace(`handling message ${message.id}`);
 
     const [profile] = hookupProfile(message);
     const [enabled] = useValueCell(Pluralchum.enabled);
 
     if (!enabled || !isProxiedMessage(message)) {
-      logger.debug(`ignoring message ${message.id}`);
+      logger.trace(`ignoring message ${message.id}`);
       return messageContent;
     }
 
     updateProfile(message);
 
     if (shouldColor(profile)) {
-      logger.debug(`coloring message ${message.id}`);
+      logger.trace(`coloring message ${message.id}`);
       return <ColorMessageContent color={profile.color} messageContent={messageContent} />;
     } else {
-      logger.debug(`not coloring message ${message.id}`);
+      logger.trace(`not coloring message ${message.id}`);
       return messageContent;
     }
   });

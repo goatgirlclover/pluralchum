@@ -24,7 +24,7 @@ export default function MessageHeaderProxy(orig, props) {
 
   const userHash = getUserHash(message);
 
-  logger.debug(profile);
+  logger.trace(profile);
 
   if (profile && (profile.status === ProfileStatus.Done || profile.status === ProfileStatus.Updating)) {
     return (
