@@ -2,16 +2,17 @@
   {
     "$schema": "https://moonlight-mod.github.io/manifest.schema.json",
     "id": "pluralchum",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "apiLevel": 2,
     "meta": {
-      "name": "pluralchum",
-      "tagline": "A short tagline that appears below the name",
-      "description": "A longer description that can **use Markdown**",
+      "name": "Pluralchum",
+      "tagline": "PluralKit integration for Moonlight",
       "authors": [
-        "You!"
+        "Ash Taylor",
+        "Aria Givens",
+        "leo vriska"
       ],
-      "source": "https://example.com/"
+      "source": "https://github.com/leo60228/pluralchum/tree/moonlight"
     },
     "settings": {
       "doColourText": {
