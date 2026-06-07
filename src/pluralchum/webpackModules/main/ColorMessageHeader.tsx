@@ -9,38 +9,22 @@ function normalize(str) {
   return fix(str).normalize('NFD');
 }
 
-function getServername(username, tag) {
-  if (!tag || tag.length === 0) {
-    return null;
-  }
-
-  username = normalize(username);
-  tag = normalize(tag);
-
-  const username_len = username.length;
-  const tag_len = tag.length + 1; // include the space as part of the tag
-
-  if (username.endsWith(tag)) {
-    return username.slice(0, username_len - tag_len);
-  } else {
-    return null;
-  }
+function destructureName(authorName, profile) {
+  const name = normalize(profile.name);
+  const tag = normalize(profile.tag ?? '');
+  const regex = new RegExp(
+    `^(?<username>${RegExp.escape(name)})(?<separator>.*)(?<memberTag>${RegExp.escape(tag)})$|^(?<username>.*)(?<separator> )(?<memberTag>${RegExp.escape(tag)})$|^(?<username>.*)$`,
+  );
+  return regex.exec(authorName).groups;
 }
 
 function getUsername(useServerNames, author, profile) {
-  const username = normalize(author.username_real ?? author.username.slice());
-  const tag = normalize(profile.tag ?? '');
+  const authorName = normalize(author.username_real ?? author.username.slice());
   if (useServerNames) {
-    const servername = getServername(username, tag);
-    if (servername) {
-      // we can seperate servername and tag
-      return { username: servername, memberTag: tag };
-    } else {
-      // most likely using a servertag, treat the whole thing as the username
-      return { username, memberTag: '' };
-    }
+    const { username, separator, memberTag } = destructureName(authorName, profile);
+    return { username, separator, memberTag };
   } else {
-    return { username: normalize(profile.name), memberTag: tag };
+    return { username: normalize(profile.name), separator: ' ', memberTag: normalize(profile.tag ?? '') };
   }
 }
 
@@ -89,7 +73,7 @@ function createHeaderChildren(message, guildId, profile, userHash, onClickUserna
   const tagColourPref = moonlight.getConfigOption('pluralchum', 'tagColourPref');
   const useServerNames = moonlight.getConfigOption('pluralchum', 'useServerNames');
 
-  const { username, memberTag } = getUsername(useServerNames, message.author, profile);
+  const { username, separator, memberTag } = getUsername(useServerNames, message.author, profile);
 
   const memberColour = getColour(memberColourPref, profile, guildId, true);
   const tagColour = getColour(tagColourPref, profile, guildId, false);
@@ -99,7 +83,7 @@ function createHeaderChildren(message, guildId, profile, userHash, onClickUserna
   return [
     <span className='username_c19a55 pk-name' onClick={onClickUsername} key='PKName'>
       <NameSegment colour={memberColour} name={username} key='NameSegment' />
-      {doSysTag ? ' ' : null}
+      {doSysTag ? separator : null}
       {doSysTag ? <NameSegment colour={tagColour} name={memberTag} /> : null}
     </span>,
     <HeaderPKBadge userHash={userHash} profile={profile} key='HeaderPKBadge' />,
