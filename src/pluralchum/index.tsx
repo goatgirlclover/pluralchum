@@ -71,6 +71,15 @@ export const webpackModules: ExtensionWebExports['webpackModules'] = {
       {
         id: 'discord/actions/MessageActionCreators',
       },
+      {
+        id: 'discord/uikit/Flex',
+      },
+      {
+        id: 'discord/modules/modals/Modals',
+      },
+      {
+        id: 'discord/modules/messages/web/Markup.css',
+      },
     ],
   },
 

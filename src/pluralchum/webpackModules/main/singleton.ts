@@ -2,6 +2,7 @@ import { initializeProfileMap, purgeOldProfiles } from './data';
 import { MapCell, ValueCell } from './utility';
 import { patchEditMenuItem } from './edit';
 import { upgradeCache } from './update';
+import { requireEula } from './eula';
 
 const logger = moonlight.getLogger('pluralchum/main');
 
@@ -16,6 +17,8 @@ class Pluralchum {
 
     upgradeCache();
     logger.info('Cache upgraded');
+
+    requireEula();
 
     this.enabled = new ValueCell(true);
 
