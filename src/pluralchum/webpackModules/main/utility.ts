@@ -122,4 +122,12 @@ export async function sleep(timeout) {
   return new Promise(resolve => setTimeout(resolve, timeout));
 }
 
+export function getInternalInstance(node: Node) {
+  return (
+    node[
+      Object.keys(node).find(k => k.startsWith('__reactInternalInstance') || k.startsWith('__reactFiber')) as string
+    ] || null
+  );
+}
+
 export const pluginName = 'pluralchum';
