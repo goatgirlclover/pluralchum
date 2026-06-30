@@ -5,7 +5,7 @@ export function wrapMessageActionCreators(orig) {
   return {
     ...orig,
     editMessage(...args) {
-      return webpackRequire('pluralchum_main').editMessage(orig.editMessage, ...args);
+      return webpackRequire('pluralchumPlus_main').editMessage(orig.editMessage, ...args);
     },
   };
 }

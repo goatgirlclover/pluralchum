@@ -1,13 +1,12 @@
 import { ExtensionWebExports } from '@moonlight-mod/types';
 
-// https://moonlight-mod.github.io/ext-dev/webpack/#patching
 export const patches: ExtensionWebExports['patches'] = [
   {
     find: /displayNameStyles!=null&&.*guildId/g,
     replace: {
       match: /let (\i)=function/,
       replacement: (_orig, ident) =>
-        `let ${ident} = require('pluralchum_main').MessageProxy.bind(this, orig); function orig`,
+        `let ${ident} = require('pluralchumPlus_main').MessageProxy.bind(this, orig); function orig`,
     },
   },
   {
@@ -15,7 +14,7 @@ export const patches: ExtensionWebExports['patches'] = [
     replace: {
       match: /({\i:\(\)=>(\i).*)function \2/g,
       replacement: (_orig, orig, ident) =>
-        `${orig}let ${ident} = require('pluralchum_main').MessageHeaderProxy.bind(this, orig); function orig`,
+        `${orig}let ${ident} = require('pluralchumPlus_main').MessageHeaderProxy.bind(this, orig); function orig`,
     },
   },
   {
@@ -23,7 +22,7 @@ export const patches: ExtensionWebExports['patches'] = [
     replace: {
       match: /({\i:\(\)=>(\i).*)\2=(\i\.memo)\(/g,
       replacement: (_orig, orig, ident, memo) =>
-        `${orig}${ident} = require('pluralchum_main').MessageContentProxy(${memo}, `,
+        `${orig}${ident} = require('pluralchumPlus_main').MessageContentProxy(${memo}, `,
     },
   },
   {
@@ -31,24 +30,23 @@ export const patches: ExtensionWebExports['patches'] = [
     replace: {
       match: /(\{\i:\(\)=>(\i).*\2=)(\i)/g,
       replacement: (_orig, orig, _ident, wrapped) =>
-        `${orig}require('pluralchum_wrap').wrapMessageActionCreators(${wrapped})`,
+        `${orig}require('pluralchumPlus_wrap').wrapMessageActionCreators(${wrapped})`,
     },
   },
   {
     find: 'discord/stores/MessageStore',
     replace: {
       match: /getLastEditableMessage/g,
-      replacement: `getLastEditableMessage(e) { return require('pluralchum_main').getLastEditableMessage(e); }orig_getLastEditableMessage`,
+      replacement: `getLastEditableMessage(e) { return require('pluralchumPlus_main').getLastEditableMessage(e); }orig_getLastEditableMessage`,
     },
   },
 ];
 
-// https://moonlight-mod.github.io/ext-dev/webpack/#webpack-module-insertion
 export const webpackModules: ExtensionWebExports['webpackModules'] = {
   entrypoint: {
     dependencies: [
       {
-        ext: 'pluralchum',
+        ext: 'pluralchumPlus',
         id: 'main',
       },
     ],
@@ -65,11 +63,28 @@ export const webpackModules: ExtensionWebExports['webpackModules'] = {
         id: 'stores',
       },
       {
+        ext: 'spacepack',
+        id: 'spacepack',
+      },
+      {
         ext: 'contextMenu',
         id: 'contextMenu',
       },
       {
+        ext: 'messagePopover',
+        id: 'messagePopover',
+      },
+      {
         id: 'discord/actions/MessageActionCreators',
+      },
+      {
+        id: 'discord/uikit/Flex',
+      },
+      {
+        id: 'discord/modules/modals/Modals',
+      },
+      {
+        id: 'discord/modules/messages/web/Markup.css',
       },
     ],
   },

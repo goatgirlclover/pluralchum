@@ -1,4 +1,5 @@
-import { sleep, isProxiedMessage } from './utility';
+import { baseEndpoint, httpGetAsync } from './api';
+import { isProxiedMessage } from './utility';
 import Pluralchum from './singleton';
 import React from '@moonlight-mod/wp/react';
 
@@ -10,21 +11,7 @@ export const ProfileStatus = {
   Stale: 'STALE',
 };
 
-const logger = moonlight.getLogger('pluralchum/profiles');
-
-const baseEndpoint = 'https://api.pluralkit.me/v2';
-const userAgent = 'PLURALCHUM (github.com/estroBiologist/pluralchum)';
-const delayPerRequest = 600;
-
-let currentRequests = -1;
-async function httpGetAsync(url) {
-  currentRequests += 1;
-  await sleep(currentRequests * delayPerRequest);
-  const headers = new Headers({ 'User-Agent': userAgent });
-  const response = await fetch(url, { headers });
-  currentRequests -= 1;
-  return response;
-}
+const logger = moonlight.getLogger('pluralchumPlus/profiles');
 
 function pkDataToProfile(data) {
   const profile = {

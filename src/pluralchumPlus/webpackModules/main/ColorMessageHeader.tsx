@@ -5,8 +5,9 @@ import HeaderPKBadge from './HeaderPKBadge';
 import React from '@moonlight-mod/wp/react';
 import { GuildMemberStore } from '@moonlight-mod/wp/common_stores';
 
+const unicodeFix = moonlight.getConfigOption('pluralchumPlus', 'unicodeFix');
 function normalize(str) {
-  return fix(str).normalize('NFD');
+  return unicodeFix ? fix(str).normalize('NFD') : str.normalize('NFD');
 }
 
 function destructureName(authorName, profile) {
@@ -58,9 +59,9 @@ function getColour(colourPref, member, guildId, defaultSystemColourToMemberColou
       break;
   }
 
-  const doContrastTest = moonlight.getConfigOption('pluralchum', 'doContrastTest');
-  const contrastTestColour = moonlight.getConfigOption('pluralchum', 'contrastTestColour');
-  const contrastThreshold = moonlight.getConfigOption('pluralchum', 'contrastThreshold');
+  const doContrastTest = moonlight.getConfigOption('pluralchumPlus', 'doContrastTest');
+  const contrastTestColour = moonlight.getConfigOption('pluralchumPlus', 'contrastTestColour');
+  const contrastThreshold = moonlight.getConfigOption('pluralchumPlus', 'contrastThreshold');
   if (colour && acceptableContrast(colour, doContrastTest, contrastTestColour, contrastThreshold)) {
     return colour;
   } else {
@@ -69,9 +70,9 @@ function getColour(colourPref, member, guildId, defaultSystemColourToMemberColou
 }
 
 function createHeaderChildren(message, guildId, profile, userHash, onClickUsername) {
-  const memberColourPref = moonlight.getConfigOption('pluralchum', 'memberColourPref');
-  const tagColourPref = moonlight.getConfigOption('pluralchum', 'tagColourPref');
-  const useServerNames = moonlight.getConfigOption('pluralchum', 'useServerNames');
+  const memberColourPref = moonlight.getConfigOption('pluralchumPlus', 'memberColourPref');
+  const tagColourPref = moonlight.getConfigOption('pluralchumPlus', 'tagColourPref');
+  const useServerNames = moonlight.getConfigOption('pluralchumPlus', 'useServerNames');
 
   const { username, separator, memberTag } = getUsername(useServerNames, message.author, profile);
 

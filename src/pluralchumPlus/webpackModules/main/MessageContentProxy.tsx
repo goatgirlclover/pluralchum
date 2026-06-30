@@ -5,13 +5,13 @@ import Pluralchum from './singleton';
 import ColorMessageContent from './ColorMessageContent';
 import React from '@moonlight-mod/wp/react';
 
-const logger = moonlight.getLogger('pluralchum/MessageContentProxy');
+const logger = moonlight.getLogger('pluralchumPlus/MessageContentProxy');
 
 function shouldColor(profile) {
-  const doContrastTest = moonlight.getConfigOption('pluralchum', 'doContrastTest');
-  const contrastTestColour = moonlight.getConfigOption('pluralchum', 'contrastTestColour');
-  const contrastThreshold = moonlight.getConfigOption('pluralchum', 'contrastThreshold');
-  const doColourText = moonlight.getConfigOption('pluralchum', 'doColourText');
+  const doContrastTest = moonlight.getConfigOption('pluralchumPlus', 'doContrastTest');
+  const contrastTestColour = moonlight.getConfigOption('pluralchumPlus', 'contrastTestColour');
+  const contrastThreshold = moonlight.getConfigOption('pluralchumPlus', 'contrastThreshold');
+  const doColourText = moonlight.getConfigOption('pluralchumPlus', 'doColourText');
 
   logger.trace(doColourText, profile, profile.color, doContrastTest, contrastTestColour, contrastThreshold);
 

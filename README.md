@@ -1,12 +1,10 @@
 # Pluralchum Moonlight port
 
-Repo URL (add in Moonlight config): https://leo60228.github.io/pluralchum/repo.json
+Repo URL (add in Moonlight config): https://goatgirlclover.github.io/pluralchum/repo.json
 
 Missing features:
 
-* Privacy policy warning
 * Profile popouts
-* Blocking
 
 ---
 

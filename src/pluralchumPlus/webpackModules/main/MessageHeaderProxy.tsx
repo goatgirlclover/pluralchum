@@ -5,7 +5,7 @@ import React from '@moonlight-mod/wp/react';
 import ColoredMessageHeader from './ColorMessageHeader';
 import LoadingMessageHeader from './LoadingMessageHeader';
 
-const logger = moonlight.getLogger('pluralchum/MessageHeaderProxy');
+const logger = moonlight.getLogger('pluralchumPlus/MessageHeaderProxy');
 
 export default function MessageHeaderProxy(orig, props) {
   const messageHeader = orig(props);

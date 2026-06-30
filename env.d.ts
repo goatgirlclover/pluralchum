@@ -1,7 +1,7 @@
 /// <reference types="@moonlight-mod/types" />
 
-declare module '@moonlight-mod/wp/pluralchum_main' {
-  export * from 'pluralchum/webpackModules/main';
+declare module '@moonlight-mod/wp/pluralchumPlus_main' {
+  export * from 'pluralchumPlus/webpackModules/main';
 }
 
 declare module '*.svg' {
