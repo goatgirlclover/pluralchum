@@ -115,7 +115,7 @@ export function useValueCell(cell) {
 }
 
 export function isProxiedMessage(message) {
-  return message.webhookId !== null;
+  return message?.webhookId !== null;
 }
 
 export async function sleep(timeout) {
