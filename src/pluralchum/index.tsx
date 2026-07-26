@@ -13,7 +13,7 @@ export const patches: ExtensionWebExports['patches'] = [
   {
     find: /textDecorationColor:\i\?\.primaryColor/g,
     replace: {
-      match: /({\i:\(\)=>(\i).*)function \2/g,
+      match: /(\i:\(\)=>(\i).*)function \2/g,
       replacement: (_orig, orig, ident) =>
         `${orig}let ${ident} = require('pluralchum_main').MessageHeaderProxy.bind(this, orig); function orig`,
     },
@@ -21,7 +21,7 @@ export const patches: ExtensionWebExports['patches'] = [
   {
     find: /isCommandType\(\)[^;]*editedTimestamp\?\./,
     replace: {
-      match: /({\i:\(\)=>(\i).*)\2=(\i\.memo)\(/g,
+      match: /(\i:\(\)=>(\i).*)\2=(\i\.memo)\(/g,
       replacement: (_orig, orig, ident, memo) =>
         `${orig}${ident} = require('pluralchum_main').MessageContentProxy(${memo}, `,
     },
